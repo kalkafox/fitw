@@ -1,0 +1,16 @@
+[package]
+name = "fortnite_itemshop_discord_webhook"
+version = "0.0.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+tokio = { version = "*", features = ["full"] }
+reqwest = { version = "*", features = ["json"] }
+cumulus = {git = "https://github.com/kalkafox/cumulus.git", branch = "main"}
+console = { version = "*" }
+regex = { version = "*" }
+serde_json = { version = "*" }
+chrono = { version = "*" }
+serenity = { version = "*", features = ["builder", "http", "model"] }
