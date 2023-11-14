@@ -27,6 +27,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     loop {
         if reset_time - chrono::Utc::now() > chrono::Duration::seconds(0) {
+            tokio::time::sleep(tokio::time::Duration::from_secs(60)).await;
             continue;
         }
 
