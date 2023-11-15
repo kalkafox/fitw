@@ -44,7 +44,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
         cinfoln!("Shop reset!");
 
-        let data = &req.text().await?;
+        let data = req.text().await?;
 
         let body: serde_json::Value = serde_json::from_str(&data)?;
 
