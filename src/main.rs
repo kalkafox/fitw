@@ -48,6 +48,12 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
         let body: serde_json::Value = serde_json::from_str(&data)?;
 
+        // in-case the hash is the same, wait for the new one
+        if app.hash == body["data"]["hash"].as_str().unwrap().to_string() {
+            tokio::time::sleep(tokio::time::Duration::from_secs(5)).await;
+            continue;
+        }
+
         let reset = chrono::DateTime::parse_from_rfc3339(
             &body["data"]["date"].as_str().unwrap().to_string(),
         )?;
@@ -71,11 +77,6 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
             duration.num_seconds() % 60,
             if duration.num_seconds() == 1 { "" } else { "s" }
         );
-
-        if app.hash == body["data"]["hash"].as_str().unwrap().to_string() {
-            tokio::time::sleep(tokio::time::Duration::from_secs(5)).await;
-            continue;
-        }
 
         app.hash = body["data"]["hash"].as_str().unwrap().to_string();
 
