@@ -1,15 +1,13 @@
 use cumulus::{cerrln, cinfoln};
 use fortnite_itemshop_discord_webhook::App;
-use serenity::{
-    builder::CreateEmbed,
-    model::{channel::Embed, webhook::Webhook},
-};
+use serenity::model::{channel::Embed, webhook::Webhook};
 use tokio::main;
 
 // Lookup values for the skins we want to find
-const SKINS: [&str; 2] = [
+const SKINS: [&str; 3] = [
     "CID_504_Athena_Commando_M_Lopex", // Fennix
     "Character_SirWolf",               // Wendell
+    "Character_FeralTrash",            // Rufus
 ];
 
 #[main]
@@ -132,16 +130,18 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         // check if our skins are in
         if re.is_match(&data) {
             webhook_message.push_str("🐺🐺🐺 OWO FURRYBAIT ALERT 🐺🐺🐺");
-        }
 
-        webhook
-            .execute(discord_client, false, |w| {
-                w.username("Fortnite Item Shop")
-                    .content(format!("{}", webhook_message))
-                    .avatar_url("https://static.wikia.nocookie.net/fortnite/images/d/d8/Wendell_-_Outfit_-_Fortnite.png")
-                    .embeds(vec![embed])
-            })
-            .await?;
+            webhook
+                .execute(discord_client, false, |w| {
+                    w.username("Fortnite Item Shop")
+                        .content(format!("{}", webhook_message))
+                        .avatar_url(
+                            "https://image.fnbr.co/outfit/65d72eaead43777eae1352a9/icon.png",
+                        )
+                        .embeds(vec![embed])
+                })
+                .await?;
+        }
 
         // sleep for 1 second
         tokio::time::sleep(tokio::time::Duration::from_secs(1)).await;
