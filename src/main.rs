@@ -108,9 +108,8 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
                     .map(|item| {
                         let name = item["items"][0]["name"].as_str().unwrap();
                         let price = item["finalPrice"].as_u64().unwrap();
-                        let image = item["items"][0]["images"]["icon"].as_str().unwrap();
-                        let id = item["items"][0]["id"].as_str().unwrap();
-
+                        ///let image = item["items"][0]["images"]["icon"].as_str().unwrap();
+                        //let id = item["items"][0]["id"].as_str().unwrap();
                         (name, format!("{} V-Bucks", price), false)
                     })
                     .collect::<Vec<(&str, String, bool)>>(),
