@@ -84,8 +84,8 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
         for item in items {
             let name = item["items"][0]["name"].as_str().unwrap();
-            let price = item["finalPrice"].as_u64().unwrap();
-            let image = item["items"][0]["images"]["icon"].as_str().unwrap();
+            //let price = item["finalPrice"].as_u64().unwrap();
+            //let image = item["items"][0]["images"]["icon"].as_str().unwrap();
             let id = item["items"][0]["id"].as_str().unwrap();
 
             cinfoln!("Checking {} ({})...", name, id);
