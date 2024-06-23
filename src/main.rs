@@ -93,7 +93,10 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
             SKINS.iter().for_each(|skin| {
                 if re.is_match(name) {
                     cinfoln!("Found {} ({})!", name, id);
-                    app.date = body["data"]["date"].as_str().unwrap().to_string();
+                    app.date = body["data"]["date"]
+                        .as_str()
+                        .unwrap_or("No date")
+                        .to_string();
                 }
             });
         }
